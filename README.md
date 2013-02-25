@@ -35,6 +35,10 @@ Ruby](http://amzn.to/VWOHtP). See also the example usage below.
 
 ## Usage
 
+Skip directly to the [Relish
+documentation](https://www.relishapp.com/cvincent/rspec-fire-roles/docs/using-roles-with-rspec-fire)
+for a simple worked example. Read on for a more detailed explanation.
+
 Let's say you have a `BatchSender` object. Here's your spec:
 
     describe BatchSender do
