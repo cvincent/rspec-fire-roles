@@ -48,6 +48,8 @@ for a simple worked example. Read on for a more detailed explanation.
 
 Let's say you have a `BatchSender` object. Here's your spec:
 
+    require "roles/notifier"
+
     describe BatchSender do
       describe "#send_messages" do
         it "passes each message to the injected notifier" do
@@ -64,8 +66,10 @@ Let's say you have a `BatchSender` object. Here's your spec:
 We're using a regular old `fire_double` here to create the mock, just like with
 rspec-fire. But notice that, rather than passing in the name of some concrete
 class which implements `#notify` with two arguments, we pass in the name of a
-role. Here's that role, which should be required in any isolated unit test
-which depends upon this role so that rspec-fire recognizes it:
+role. Here's that role, defined in `spec/roles/notifier.rb` (though it can be
+defined anywhere as long as it gets included), which should be required in any
+isolated unit test which depends upon this role so that rspec-fire recognizes
+it:
 
     module Roles
       class Notifier
@@ -80,6 +84,8 @@ expectations don't match this interface.
 
 Now here's where rspec-fire-roles comes in.  Here's the spec for a concrete
 object which implements the `Notifier` role:
+
+    require "roles/notifier"
 
     describe EmailNotifier do
       implements_role "Roles::Notifier"
@@ -97,6 +103,8 @@ than one role.
 
 Here's an example of another class in the same system which plays this role,
 plus another role (for demonstration purposes):
+
+    require "roles/notifier"
 
     describe SmsNotifier do
       implements_role "Roles::Notifier"
@@ -140,6 +148,11 @@ ensure that the objects play well together. Bliss!
    such that arguments must match some other role, though I don't know if such
    a restriction would be worth it. In practice, such a scenario is probably
    quite rare.
+ * The way rspec-fire works, there is no failure in a dependent class's spec if
+   the role is simply not defined. This is intentional so that using
+   `fire_double`s can be done in both isolation and integration. Be sure your
+   roles are actually being required when you use them, which should be fast
+   enough for isolated tests.
  * Anything else. Feedback is appreciated!
 
 ## Contributing
