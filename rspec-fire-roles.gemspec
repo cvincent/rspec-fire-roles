@@ -17,8 +17,8 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_development_dependency "cucumber"
-  gem.add_development_dependency "aruba"
+  gem.add_development_dependency "cucumber", "~> 1.2"
+  gem.add_development_dependency "aruba", "~> 0.5"
 
-  gem.add_dependency "rspec-fire"
+  gem.add_dependency "rspec-fire", "~> 1.1"
 end
