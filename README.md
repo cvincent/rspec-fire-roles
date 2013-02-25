@@ -15,6 +15,13 @@ Or install it yourself as:
 
     $ gem install rspec-fire-roles
 
+Add it to your `spec_helper.rb`:
+
+    RSpec.configure do |config|
+      config.include RSpec::Fire
+      config.include RSpec::Fire::Roles
+    end
+
 ## Why
 
 While rspec-fire allows you to create mocks of specific concrete classes, this
