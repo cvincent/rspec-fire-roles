@@ -11,7 +11,7 @@ Add this line to your application's Gemfile:
 
     gem "rspec-fire-roles"
 
-Or install it yourself as:
+Or install it yourself with:
 
     $ gem install rspec-fire-roles
 
